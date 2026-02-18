@@ -1,0 +1,304 @@
+<!-- ============================================================ -->
+<!-- HEADER / NAVIGATION -->
+<!-- ============================================================ -->
+<header class="header" [class.scrolled]="headerScrolled">
+  <div class="header__inner">
+    <a class="header__logo" (click)="scrollTo('hero')">
+      <span class="header__logo-accent">M</span><span class="header__logo-text">V</span>
+    </a>
+
+    <nav class="header__nav" [class.open]="mobileMenuOpen">
+      <a *ngFor="let link of navLinks"
+         class="header__nav-link"
+         [class.active]="activeSection === link.id"
+         (click)="scrollTo(link.id)">
+        {{ link.label }}
+      </a>
+      <a class="header__cv-btn" href="assets/Marko_Velimirovic_CV.pdf" target="_blank" rel="noopener">
+        <span class="header__cv-icon">↓</span> CV
+      </a>
+    </nav>
+
+    <button class="header__burger" (click)="toggleMobileMenu()" [class.open]="mobileMenuOpen">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============================================================ -->
+<!-- HERO SECTION -->
+<!-- ============================================================ -->
+<section id="hero" class="hero" data-section="hero">
+  <div class="hero__bg-grid"></div>
+  <div class="hero__noise"></div>
+
+  <div class="hero__content" [class.visible]="heroVisible">
+    <div class="hero__badge" data-reveal>
+      <span class="hero__badge-dot"></span>
+      Available for opportunities
+    </div>
+
+    <h1 class="hero__title" data-reveal>
+      <span class="hero__title-line">Marko</span>
+      <span class="hero__title-line hero__title-outline">Velimirović</span>
+    </h1>
+
+    <p class="hero__subtitle" data-reveal>
+      Computer Science Student<br>
+      <span class="hero__subtitle-accent">Faculty of Technical Sciences,<br class="hero__mobile-break"> Novi Sad</span>
+    </p>
+
+    <div class="hero__actions" data-reveal>
+      <button class="btn btn--primary" (click)="scrollTo('projects')">
+        View Projects
+        <span class="btn__arrow">→</span>
+      </button>
+      <button class="btn btn--ghost" (click)="scrollTo('contact')">
+        Get in Touch
+      </button>
+    </div>
+
+    <div class="hero__portrait hero__portrait--mobile" [class.visible]="heroVisible" data-reveal>
+      <div class="hero__portrait-frame">
+        <img src="assets/marko-avatar.png" alt="Marko Velimirović" loading="eager">
+      </div>
+    </div>
+
+    <div class="hero__scroll-hint" data-reveal>
+      <div class="hero__scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </div>
+
+  <div class="hero__portrait hero__portrait--desktop" [class.visible]="heroVisible">
+    <div class="hero__portrait-frame">
+      <img src="assets/marko-avatar.png" alt="Marko Velimirović" loading="eager">
+    </div>
+    <div class="hero__portrait-ring"></div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- ABOUT SECTION -->
+<!-- ============================================================ -->
+<section id="about" class="about" data-section="about">
+  <div class="container">
+    <div class="about__grid">
+      <div class="about__left" data-reveal>
+        <div class="section-label">About Me</div>
+        <h2 class="section-title">Building things that<br><span class="text-accent">matter.</span></h2>
+      </div>
+
+      <div class="about__right" data-reveal>
+        <p class="about__text">
+          Born in Loznica, Serbia. Currently in my fourth year studying Computer Science at the Faculty of Technical Sciences in Novi Sad. I thrive in team environments but work just as well independently.
+        </p>
+        <p class="about__text">
+          My work spans full-stack web development, desktop applications, and computer graphics. I'm driven by curiosity and a desire to create clean, impactful software.
+        </p>
+
+        <div class="about__stats">
+          <div class="about__stat">
+            <span class="about__stat-number">6+</span>
+            <span class="about__stat-label">Major Projects</span>
+          </div>
+          <div class="about__stat">
+            <span class="about__stat-number">8+</span>
+            <span class="about__stat-label">Technologies</span>
+          </div>
+          <div class="about__stat">
+            <span class="about__stat-number">4rd</span>
+            <span class="about__stat-label">Year CS Student</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about__education" data-reveal>
+      <div class="section-label">Education</div>
+      <div class="about__timeline">
+        <div class="about__timeline-item">
+          <div class="about__timeline-year">2022 – Present</div>
+          <div class="about__timeline-info">
+            <h3>Faculty of Technical Sciences, University of Novi Sad</h3>
+            <p>Computer Science and Automation (E2)</p>
+          </div>
+        </div>
+        <div class="about__timeline-item">
+          <div class="about__timeline-year">2018 – 2022</div>
+          <div class="about__timeline-info">
+            <h3>Electrical Engineering School "Mihajlo Pupin", Novi Sad</h3>
+            <p>Information Technology Technician</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PROJECTS SECTION -->
+<!-- ============================================================ -->
+<section id="projects" class="projects" data-section="projects">
+  <div class="container">
+    <div class="projects__header" data-reveal>
+      <div>
+        <div class="section-label">Projects</div>
+        <h2 class="section-title">Selected Work</h2>
+      </div>
+
+      <div class="projects__filters">
+        <button *ngFor="let f of filters"
+                class="projects__filter"
+                [class.active]="activeFilter === f.id"
+                (click)="setFilter(f.id)">
+          {{ f.label }}
+        </button>
+      </div>
+    </div>
+
+    <div class="projects__grid">
+      <div *ngFor="let project of filteredProjects; let i = index; trackBy: trackByProjectId"
+           class="project-card"
+           data-reveal
+           [style.animation-delay]="(i * 80) + 'ms'"
+           (click)="openModal(project)">
+
+        <div class="project-card__image">
+          <img [src]="project.images[0]" [alt]="project.title" loading="lazy">
+          <div class="project-card__overlay">
+            <span class="project-card__view">View Project →</span>
+          </div>
+        </div>
+
+        <div class="project-card__body">
+          <div class="project-card__meta">
+            <span class="project-card__index">{{ getProjectIndex(project) }}</span>
+            <span class="project-card__category">{{ getCategoryLabel(project.category) }}</span>
+          </div>
+          <h3 class="project-card__title">{{ project.title }}</h3>
+          <p class="project-card__subtitle">{{ project.subtitle }}</p>
+          <div class="project-card__tech">
+            <span *ngFor="let t of project.tech.slice(0, 3)" class="project-card__tag">{{ t }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SKILLS SECTION -->
+<!-- ============================================================ -->
+<section id="skills" class="skills" data-section="skills">
+  <div class="container">
+    <div class="skills__header" data-reveal>
+      <div class="section-label">Tech Stack</div>
+      <h2 class="section-title">Skills &amp; Tools</h2>
+    </div>
+
+    <div class="skills__grid">
+      <div *ngFor="let cat of skillCategories; let i = index"
+           class="skill-card"
+           data-reveal
+           [style.animation-delay]="(i * 100) + 'ms'">
+        <div class="skill-card__icon">{{ cat.icon }}</div>
+        <h3 class="skill-card__title">{{ cat.title }}</h3>
+        <div class="skill-card__items">
+          <span *ngFor="let item of cat.items" class="skill-card__item">{{ item }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- CONTACT SECTION -->
+<!-- ============================================================ -->
+<section id="contact" class="contact" data-section="contact">
+  <div class="container">
+    <div class="contact__inner" data-reveal>
+      <div class="section-label">Get in Touch</div>
+      <h2 class="contact__title">
+        Let's work<br><span class="text-accent">together.</span>
+      </h2>
+      <p class="contact__text">
+        Currently looking for my first professional opportunity. Open to internships and junior positions.
+      </p>
+
+      <div class="contact__links">
+        <a href="mailto:velimirovitsh@gmail.com" class="contact__link">
+          <span class="contact__link-label">Email</span>
+          <span class="contact__link-value">velimirovitsh&#64;gmail.com</span>
+          <span class="contact__link-arrow">→</span>
+        </a>
+        <a href="https://www.linkedin.com/in/marko-velimirovi%C4%87-17b9b218b/" target="_blank" rel="noopener" class="contact__link">
+          <span class="contact__link-label">LinkedIn</span>
+          <span class="contact__link-value">Marko Velimirović</span>
+          <span class="contact__link-arrow">→</span>
+        </a>
+        <a href="https://github.com/velimirovic" target="_blank" rel="noopener" class="contact__link">
+          <span class="contact__link-label">GitHub</span>
+          <span class="contact__link-value">github.com/velimirovic</span>
+          <span class="contact__link-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- FOOTER -->
+<!-- ============================================================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__inner">
+      <span class="footer__copy">© {{ currentYear }} Marko Velimirović</span>
+      <span class="footer__location">Novi Sad, Serbia</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================ -->
+<!-- PROJECT MODAL -->
+<!-- ============================================================ -->
+<div class="modal" *ngIf="modalProject" (click)="closeModal()">
+  <div class="modal__content" (click)="$event.stopPropagation()">
+    <button class="modal__close" (click)="closeModal()">✕</button>
+
+    <div class="modal__gallery">
+      <div class="modal__image-wrap">
+        <img [src]="modalProject.images[modalImageIndex]" [alt]="modalProject.title">
+      </div>
+      <div class="modal__gallery-nav" *ngIf="modalProject.images.length > 1">
+        <button class="modal__arrow modal__arrow--prev" (click)="prevImage()">←</button>
+        <div class="modal__dots">
+          <span *ngFor="let img of modalProject.images; let i = index"
+                class="modal__dot"
+                [class.active]="i === modalImageIndex"
+                (click)="setModalImage(i)">
+          </span>
+        </div>
+        <button class="modal__arrow modal__arrow--next" (click)="nextImage()">→</button>
+      </div>
+    </div>
+
+    <div class="modal__info">
+      <span class="modal__category">{{ getCategoryLabel(modalProject.category) }}</span>
+      <h2 class="modal__title">{{ modalProject.title }}</h2>
+      <p class="modal__subtitle">{{ modalProject.subtitle }}</p>
+      <p class="modal__desc">{{ modalProject.description }}</p>
+
+      <div class="modal__features">
+        <h4>Key Features</h4>
+        <ul>
+          <li *ngFor="let f of modalProject.features">{{ f }}</li>
+        </ul>
+      </div>
+
+      <div class="modal__tech">
+        <span *ngFor="let t of modalProject.tech" class="modal__tag">{{ t }}</span>
+      </div>
+    </div>
+  </div>
+</div>
