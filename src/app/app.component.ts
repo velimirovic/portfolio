@@ -185,6 +185,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   scrollTo(sectionId: string): void {
     this.mobileMenuOpen = false;
+    if (this.isBrowser) document.body.style.overflow = '';
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
@@ -217,7 +218,12 @@ export class AppComponent implements OnInit, OnDestroy {
     if (e.key === 'ArrowLeft') this.prevImage();
   }
 
-  toggleMobileMenu(): void { this.mobileMenuOpen = !this.mobileMenuOpen; }
+  toggleMobileMenu(): void {
+    this.mobileMenuOpen = !this.mobileMenuOpen;
+    if (this.isBrowser) {
+      document.body.style.overflow = this.mobileMenuOpen ? 'hidden' : '';
+    }
+  }
 
   getCategoryLabel(cat: string): string {
     return ({ web: 'Web App', desktop: 'Desktop', graphics: 'Computer Graphics' } as any)[cat] || cat;
