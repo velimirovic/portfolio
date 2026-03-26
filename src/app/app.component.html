@@ -99,7 +99,7 @@
 
         <div class="about__stats">
           <div class="about__stat">
-            <span class="about__stat-number">6+</span>
+            <span class="about__stat-number">7+</span>
             <span class="about__stat-label">Major Projects</span>
           </div>
           <div class="about__stat">
@@ -165,7 +165,13 @@
            (click)="openModal(project)">
 
         <div class="project-card__image">
-          <img [src]="project.images[0]" [alt]="project.title" loading="lazy">
+          <img [src]="project.images[0]" 
+               [alt]="project.title" 
+               loading="lazy" 
+               width="1600" 
+               height="900" 
+               decoding="async"
+               (click)="openImagePreview(project.images[0], project.title, $event)">
           <div class="project-card__overlay">
             <span class="project-card__view">View Project →</span>
           </div>
@@ -269,7 +275,7 @@
 
     <div class="modal__gallery">
       <div class="modal__image-wrap">
-        <img [src]="modalProject.images[modalImageIndex]" [alt]="modalProject.title">
+        <img [src]="modalProject.images[modalImageIndex]" [alt]="modalProject.title" width="1600" height="900" decoding="async">
       </div>
       <div class="modal__gallery-nav" *ngIf="modalProject.images.length > 1">
         <button class="modal__arrow modal__arrow--prev" (click)="prevImage()">←</button>
@@ -301,5 +307,16 @@
         <span *ngFor="let t of modalProject.tech" class="modal__tag">{{ t }}</span>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- IMAGE PREVIEW MODAL (LIGHTBOX) -->
+<!-- ============================================================ -->
+<div class="image-preview" *ngIf="imagePreviewSrc" (click)="closeImagePreview()">
+  <button class="image-preview__close" (click)="closeImagePreview()">✕</button>
+  <div class="image-preview__container" (click)="$event.stopPropagation()">
+    <img [src]="imagePreviewSrc" [alt]="imagePreviewTitle" class="image-preview__image">
+    <p class="image-preview__title">{{ imagePreviewTitle }}</p>
   </div>
 </div>

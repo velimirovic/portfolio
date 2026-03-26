@@ -24,6 +24,8 @@ export class AppComponent implements OnInit, OnDestroy {
   activeSection = 'hero';
   modalProject: Project | null = null;
   modalImageIndex = 0;
+  imagePreviewSrc: string | null = null;
+  imagePreviewTitle: string = '';
   currentYear = new Date().getFullYear();
   heroVisible = false;
   headerScrolled = false;
@@ -37,6 +39,16 @@ export class AppComponent implements OnInit, OnDestroy {
   ];
 
   projects: Project[] = [
+    {
+      id: 'event-day',
+      title: 'Event Day',
+      subtitle: 'Progressive Web App for Conference with AI Assistant',
+      tech: ['React 18', 'Express.js', 'SQLite', 'Claude API', 'PWA'],
+      description: 'Progressive Web Application (PWA) for Event Day conference featuring an AI assistant, personalized schedule management, and real-time moderation. Enables attendees to browse the agenda, take notes during sessions, interact with an AI assistant, and allows administrators to manage sessions and announcements.',
+      features: ['AI Assistant (Claude API) — Chatbot answering questions about schedule, speakers, and venue', 'Personalized Schedule — Session bookmarking, conflict detection, status tracking (LIVE/Upcoming/Past)', 'Live Q&A — Submit questions with priority voting', 'Networking — Digital business cards with vCard export', 'Admin Panel — Full CRUD for sessions, speakers, and announcements', 'PWA + Mobile-first — Offline support, installable, glassmorphism UI'],
+      images: ['assets/projects/event-day/1.png','assets/projects/event-day/2.png','assets/projects/event-day/3.png','assets/projects/event-day/4.png','assets/projects/event-day/5.png'],
+      category: 'web',
+    },
     {
       id: 'travel-vista',
       title: 'Travel Vista',
@@ -200,6 +212,19 @@ export class AppComponent implements OnInit, OnDestroy {
     if (this.isBrowser) document.body.style.overflow = '';
   }
 
+  openImagePreview(imageSrc: string, projectTitle: string, e: Event): void {
+    e.stopPropagation();
+    this.imagePreviewSrc = imageSrc;
+    this.imagePreviewTitle = projectTitle;
+    if (this.isBrowser) document.body.style.overflow = 'hidden';
+  }
+
+  closeImagePreview(): void {
+    this.imagePreviewSrc = null;
+    this.imagePreviewTitle = '';
+    if (this.isBrowser) document.body.style.overflow = '';
+  }
+
   nextImage(): void {
     if (this.modalProject) this.modalImageIndex = (this.modalImageIndex + 1) % this.modalProject.images.length;
   }
@@ -212,8 +237,15 @@ export class AppComponent implements OnInit, OnDestroy {
 
   @HostListener('document:keydown', ['$event'])
   onKeyDown(e: KeyboardEvent): void {
+    if (e.key === 'Escape') {
+      if (this.imagePreviewSrc) {
+        this.closeImagePreview();
+      } else if (this.modalProject) {
+        this.closeModal();
+      }
+      return;
+    }
     if (!this.modalProject) return;
-    if (e.key === 'Escape') this.closeModal();
     if (e.key === 'ArrowRight') this.nextImage();
     if (e.key === 'ArrowLeft') this.prevImage();
   }
