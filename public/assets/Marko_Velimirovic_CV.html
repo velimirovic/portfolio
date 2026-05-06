@@ -325,6 +325,73 @@
       line-height: 1.55;
     }
 
+    /* ── RESPONSIVE ──────────────────────────── */
+    @media (max-width: 700px) {
+      body { font-size: 11pt; }
+
+      .page {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto;
+        margin: 0;
+        min-height: unset;
+        box-shadow: none;
+      }
+
+      .header {
+        flex-direction: column;
+        gap: 16px;
+        padding: 20px 18px 16px;
+      }
+
+      .header__name { font-size: 22pt; }
+
+      .header__contacts {
+        align-items: flex-start;
+        flex-direction: column;
+        padding-top: 0;
+        gap: 6px;
+      }
+
+      .portfolio-banner {
+        padding: 10px 18px;
+        gap: 8px;
+      }
+
+      .portfolio-banner__url { font-size: 9pt; }
+
+      .sidebar {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 18px;
+      }
+
+      .main { padding: 18px; }
+
+      .project { padding: 12px; }
+
+      .project__name { font-size: 12pt; }
+
+      .project__header { flex-wrap: wrap; gap: 4px; }
+
+      .summary-text { font-size: 10.5pt; }
+
+      .project__desc { font-size: 10.5pt; }
+
+      .project__subtitle { font-size: 9.5pt; }
+
+      .tag { font-size: 8.5pt; padding: 3px 9px; }
+
+      .skill-group__label { font-size: 9.5pt; }
+
+      .edu-item__school { font-size: 10.5pt; }
+
+      .edu-item__degree { font-size: 9.5pt; }
+
+      .edu-item__year { font-size: 8.5pt; }
+
+      .section-title { font-size: 8pt; }
+    }
+
     /* ── PRINT ────────────────────────────────── */
     @media print {
       body { background: #0a0a0b; }
