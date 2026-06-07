@@ -3,76 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
   <title>Marko Velimirović — CV</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --accent:  #c8ff00;
-      --bg:      #0a0a0b;
-      --bg2:     #111113;
-      --bg3:     #1a1a1e;
-      --card:    #141416;
-      --text:    #f0ede8;
-      --text2:   #b8b8c4;
-      --muted:   #8a8a98;
-      --border:  rgba(255,255,255,0.07);
-      --border-h:rgba(255,255,255,0.13);
+      color-scheme: light;
+      --accent:  #1d4ed8;
+      --text:    #111827;
+      --text2:   #4b5563;
+      --muted:   #6b7280;
+      --border:  #e5e7eb;
+      --bg-tag:  #f3f4f6;
     }
 
     body {
-      font-family: 'DM Sans', system-ui, sans-serif;
-      background: #1c1c1e;
+      font-family: 'Inter', Arial, sans-serif;
+      background: #d1d5db;
       color: var(--text);
       font-size: 10pt;
-      line-height: 1.55;
+      line-height: 1.5;
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
     }
 
+    /* ─── PAGE ──────────────────────────────────── */
     .page {
       max-width: 210mm;
       min-height: 297mm;
-      margin: 12px auto;
-      background: var(--bg);
-      box-shadow: 0 8px 48px rgba(0,0,0,0.6);
-      display: grid;
-      grid-template-columns: 66mm 1fr;
-      grid-template-rows: auto auto 1fr;
+      margin: 16px auto;
+      background: #fff;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+      padding: 36px 40px 36px;
     }
 
-    /* ── HEADER ───────────────────────────────── */
+    /* ─── HEADER ────────────────────────────────── */
     .header {
-      grid-column: 1 / -1;
-      background: var(--bg2);
-      border-bottom: 1px solid var(--border);
-      padding: 22px 26px 20px;
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
       gap: 20px;
+      padding-bottom: 18px;
+      border-bottom: 2px solid var(--accent);
+      margin-bottom: 6px;
     }
 
     .header__name {
-      font-family: 'Syne', sans-serif;
-      font-size: 28pt;
-      font-weight: 800;
+      font-size: 24pt;
+      font-weight: 700;
       color: var(--text);
       line-height: 1;
       letter-spacing: -0.5px;
     }
 
     .header__title {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 8pt;
-      color: var(--accent);
+      font-size: 10pt;
       font-weight: 500;
+      color: var(--accent);
       margin-top: 6px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
     }
 
     .header__contacts {
@@ -80,294 +72,272 @@
       flex-direction: column;
       align-items: flex-end;
       gap: 4px;
-      padding-top: 3px;
       flex-shrink: 0;
+      padding-top: 2px;
     }
 
     .contact-item {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       font-size: 8.5pt;
       color: var(--text2);
       text-decoration: none;
-      font-family: 'DM Sans', sans-serif;
     }
 
-    .contact-item:hover { color: var(--accent); }
-
     .contact-item svg {
-      width: 12px;
-      height: 12px;
-      opacity: 0.55;
+      width: 11px;
+      height: 11px;
+      color: var(--muted);
       flex-shrink: 0;
     }
 
-    /* ── PORTFOLIO BANNER ─────────────────────── */
+    /* ─── PORTFOLIO BANNER ──────────────────────── */
     .portfolio-banner {
-      grid-column: 1 / -1;
       background: var(--accent);
-      padding: 9px 26px;
+      padding: 7px 14px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      margin-bottom: 22px;
+      border-radius: 0 0 4px 4px;
     }
 
     .portfolio-banner__label {
-      font-family: 'JetBrains Mono', monospace;
       font-size: 7pt;
-      font-weight: 500;
-      color: #0a0a0b;
+      font-weight: 600;
+      color: rgba(255,255,255,0.7);
       text-transform: uppercase;
       letter-spacing: 0.12em;
     }
 
     .portfolio-banner__url {
-      font-family: 'Syne', sans-serif;
-      font-size: 9.5pt;
-      font-weight: 800;
-      color: #0a0a0b;
-      text-decoration: none;
-      letter-spacing: -0.2px;
-    }
-
-    .portfolio-banner__arrow {
-      font-size: 13pt;
-      color: #0a0a0b;
+      font-size: 9pt;
       font-weight: 700;
+      color: #fff;
+      text-decoration: none;
     }
 
-    /* ── SIDEBAR ──────────────────────────────── */
-    .sidebar {
-      background: var(--bg2);
-      padding: 20px 16px 20px 18px;
-      border-right: 1px solid var(--border);
-    }
+    .portfolio-banner__arrow { color: #fff; font-size: 12pt; }
 
-    /* ── MAIN ─────────────────────────────────── */
-    .main {
-      padding: 20px 22px 20px 18px;
-    }
-
-    /* ── SHARED ───────────────────────────────── */
-    .section { margin-bottom: 18px; }
+    /* ─── SECTION ───────────────────────────────── */
+    .section { margin-bottom: 20px; }
 
     .section-title {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 7.5pt;
-      font-weight: 500;
+      font-size: 8pt;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.13em;
       color: var(--accent);
       margin-bottom: 10px;
-      padding-bottom: 6px;
+      padding-bottom: 5px;
       border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
-    .section-title::before {
-      content: '';
-      width: 18px;
-      height: 1px;
-      background: var(--accent);
-      flex-shrink: 0;
-    }
-
-    /* ── SUMMARY ──────────────────────────────── */
+    /* ─── SUMMARY ───────────────────────────────── */
     .summary-text {
       font-size: 9.5pt;
       color: var(--text2);
-      line-height: 1.7;
+      line-height: 1.65;
     }
 
-    .summary-text strong {
-      color: var(--text);
+    .summary-text strong { color: var(--text); font-weight: 600; }
+
+    /* ─── SKILLS ────────────────────────────────── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px 24px;
+    }
+
+    .skill-row {
+      display: flex;
+      gap: 8px;
+      align-items: baseline;
+    }
+
+    .skill-row__label {
+      font-size: 8.5pt;
       font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+      flex-shrink: 0;
+      min-width: 90px;
     }
 
-    /* ── PROJECTS ─────────────────────────────── */
+    .skill-row__values {
+      font-size: 8.5pt;
+      color: var(--text2);
+      line-height: 1.5;
+    }
+
+    /* ─── PROJECTS ──────────────────────────────── */
     .project {
       margin-bottom: 14px;
-      padding: 12px 13px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-left: 2px solid var(--accent);
-      border-radius: 0 5px 5px 0;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
     }
 
-    .project:last-child { margin-bottom: 0; }
+    .project:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
 
     .project__header {
       display: flex;
       align-items: baseline;
       justify-content: space-between;
-      gap: 8px;
+      gap: 10px;
       margin-bottom: 2px;
     }
 
     .project__name {
-      font-family: 'Syne', sans-serif;
-      font-size: 11pt;
+      font-size: 10.5pt;
       font-weight: 700;
       color: var(--text);
-      line-height: 1.2;
     }
 
     .project__badge {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 6pt;
-      font-weight: 500;
+      font-size: 7pt;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .project__meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .project__link {
+      font-size: 7.5pt;
+      font-weight: 500;
       color: var(--accent);
-      background: rgba(200,255,0,0.1);
-      border: 1px solid rgba(200,255,0,0.25);
-      padding: 2px 6px;
-      border-radius: 3px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 3px;
       white-space: nowrap;
     }
 
+    .project__link:hover { text-decoration: underline; }
+    .project__link svg { width: 10px; height: 10px; }
+
     .project__subtitle {
-      font-size: 9pt;
+      font-size: 8.5pt;
       color: var(--muted);
       font-style: italic;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
 
     .tags {
       display: flex;
       flex-wrap: wrap;
       gap: 4px;
-      margin-bottom: 7px;
+      margin-bottom: 6px;
     }
 
     .tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 8pt;
-      font-weight: 400;
-      padding: 2px 8px;
+      font-size: 7.5pt;
+      font-weight: 500;
+      padding: 2px 7px;
       border-radius: 3px;
-    }
-
-    .tag--tech {
-      background: rgba(255,255,255,0.05);
-      color: var(--text2);
-      border: 1px solid var(--border);
-    }
-
-    .tag--skill {
-      background: rgba(255,255,255,0.04);
+      background: var(--bg-tag);
       color: var(--text2);
       border: 1px solid var(--border);
     }
 
     .project__desc {
-      font-size: 9.5pt;
+      font-size: 9pt;
       color: var(--text2);
       line-height: 1.6;
     }
 
-    /* ── SKILLS ───────────────────────────────── */
-    .skill-group { margin-bottom: 10px; }
-
-    .skill-group__label {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 8.5pt;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 5px;
+    /* ─── EDUCATION ─────────────────────────────── */
+    .edu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid var(--border);
     }
 
-    /* ── EDUCATION ────────────────────────────── */
-    .edu-item { margin-bottom: 10px; }
+    .edu-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .edu-item__left { flex: 1; }
 
     .edu-item__school {
-      font-size: 9.5pt;
-      font-weight: 600;
+      font-size: 10pt;
+      font-weight: 700;
       color: var(--text);
     }
 
     .edu-item__degree {
       font-size: 8.5pt;
       color: var(--text2);
-      line-height: 1.45;
-      margin-top: 1px;
+      margin-top: 2px;
+      font-style: italic;
     }
 
     .edu-item__year {
-      font-family: 'JetBrains Mono', monospace;
       font-size: 8pt;
       color: var(--muted);
-      margin-top: 2px;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
-    /* ── LANGUAGES ────────────────────────────── */
+    /* ─── BOTTOM ROW ────────────────────────────── */
+    .bottom-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 40px;
+    }
+
     .lang-item {
+      display: flex;
+      justify-content: space-between;
       font-size: 9pt;
       color: var(--text2);
       margin-bottom: 3px;
-      display: flex;
-      justify-content: space-between;
+      max-width: 180px;
     }
 
-    .lang-item span { color: var(--muted); font-size: 8.5pt; }
+    .lang-item span { color: var(--muted); }
 
-    /* ── NOTABLE ──────────────────────────────── */
     .highlight-box {
-      background: rgba(200,255,0,0.06);
-      border-left: 2px solid var(--accent);
-      padding: 7px 9px;
+      background: #eff6ff;
+      border-left: 3px solid var(--accent);
+      padding: 7px 10px;
       border-radius: 0 4px 4px 0;
       font-size: 8.5pt;
-      color: rgba(200,255,0,0.9);
-      line-height: 1.55;
+      color: #1e40af;
+      line-height: 1.5;
     }
 
-    /* ── PRINT ────────────────────────────────── */
+    /* ─── RESPONSIVE ────────────────────────────── */
+    @media (max-width: 640px) {
+      body { background: #fff; }
+      .page { padding: 20px 18px; margin: 0; box-shadow: none; min-height: unset; }
+      .header { flex-direction: column; gap: 14px; }
+      .header__name { font-size: 20pt; }
+      .header__contacts { align-items: flex-start; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .edu-grid { grid-template-columns: 1fr; gap: 12px; }
+      .bottom-row { grid-template-columns: 1fr; gap: 16px; }
+    }
+
+    /* ─── PRINT ─────────────────────────────────── */
     @media print {
-      body { background: #0a0a0b; }
-
-      .page {
-        margin: 0;
-        box-shadow: none;
-        width: 210mm;
-        max-width: 100%;
-      }
-
-      /* Replace all rgba() with solid equivalents to avoid rasterization */
-      .project {
-        background: #141416;
-        border-color: #222228;
-      }
-
-      .tag--tech,
-      .tag--skill {
-        background: #1e1e22;
-        border-color: #2a2a30;
-      }
-
-      .project__badge {
-        background: #1e2800;
-        border-color: #3a4a00;
-      }
-
-      .highlight-box {
-        background: #131a00;
-      }
-
-      .section-title {
-        border-bottom-color: #222228;
-      }
-
-      .sidebar {
-        border-right-color: #222228;
-      }
-
-      .header {
-        border-bottom-color: #222228;
-      }
+      body { background: #fff; }
+      .page { margin: 0; box-shadow: none; width: 210mm; max-width: 100%; padding: 30px 36px; }
     }
 
     @page { size: A4; margin: 0; }
@@ -380,7 +350,7 @@
     <header class="header">
       <div>
         <div class="header__name">Marko Velimirović</div>
-        <div class="header__title">Full-Stack Developer · CS Student</div>
+        <div class="header__title">Full-Stack Developer &amp; CS Student</div>
       </div>
       <div class="header__contacts">
         <a class="contact-item" href="mailto:velimirovitsh@gmail.com">
@@ -408,249 +378,225 @@
 
     <!-- PORTFOLIO BANNER -->
     <div class="portfolio-banner">
-      <span class="portfolio-banner__label">Portfolio →</span>
+      <span class="portfolio-banner__label">Portfolio</span>
       <a class="portfolio-banner__url" href="https://velimirovic.github.io/portfolio/" target="_blank">
         velimirovic.github.io/portfolio
       </a>
       <span class="portfolio-banner__arrow">↗</span>
     </div>
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
+    <!-- SUMMARY -->
+    <div class="section">
+      <div class="section-title">Professional Summary</div>
+      <p class="summary-text">
+        4th-year Computer Science student at the Faculty of Technical Sciences, Novi Sad with <strong>hands-on experience shipping full-stack web applications, desktop software, and computer graphics projects</strong>. Comfortable across the entire stack — from Java Spring Boot and ASP.NET Core backends to Angular frontends, with real-world use of Docker, PostgreSQL, WebSockets, and AI APIs. <strong>Open to junior developer and internship roles</strong> in web development or backend systems engineering.
+      </p>
+    </div>
 
-      <div class="section">
-        <div class="section-title">Technical Skills</div>
-
-        <div class="skill-group">
-          <div class="skill-group__label">Languages</div>
-          <div class="tags">
-            <span class="tag tag--skill">Java</span>
-            <span class="tag tag--skill">C#</span>
-            <span class="tag tag--skill">TypeScript</span>
-            <span class="tag tag--skill">C++</span>
-            <span class="tag tag--skill">Python</span>
-            <span class="tag tag--skill">SQL</span>
-            <span class="tag tag--skill">C</span>
-          </div>
+    <!-- SKILLS -->
+    <div class="section">
+      <div class="section-title">Technical Skills</div>
+      <div class="skills-grid">
+        <div class="skill-row">
+          <span class="skill-row__label">Languages</span>
+          <span class="skill-row__values">Java, C#, TypeScript, C++, Python, SQL, C</span>
         </div>
-
-        <div class="skill-group">
-          <div class="skill-group__label">Backend</div>
-          <div class="tags">
-            <span class="tag tag--skill">Spring Boot</span>
-            <span class="tag tag--skill">ASP.NET Core 8</span>
-            <span class="tag tag--skill">Node.js / Express</span>
-            <span class="tag tag--skill">REST APIs</span>
-            <span class="tag tag--skill">SignalR</span>
-            <span class="tag tag--skill">JWT Auth</span>
-          </div>
+        <div class="skill-row">
+          <span class="skill-row__label">Databases</span>
+          <span class="skill-row__values">PostgreSQL, Oracle SQL</span>
         </div>
-
-        <div class="skill-group">
-          <div class="skill-group__label">Frontend</div>
-          <div class="tags">
-            <span class="tag tag--skill">Angular 16</span>
-            <span class="tag tag--skill">React 18/19</span>
-            <span class="tag tag--skill">HTML / CSS / SCSS</span>
-            <span class="tag tag--skill">PWA</span>
-            <span class="tag tag--skill">Leaflet Maps</span>
-          </div>
+        <div class="skill-row">
+          <span class="skill-row__label">Backend</span>
+          <span class="skill-row__values">Spring Boot, ASP.NET Core 8, Node.js / Express, SignalR, JWT</span>
         </div>
-
-        <div class="skill-group">
-          <div class="skill-group__label">Databases</div>
-          <div class="tags">
-            <span class="tag tag--skill">PostgreSQL</span>
-            <span class="tag tag--skill">Oracle SQL</span>
-          </div>
+        <div class="skill-row">
+          <span class="skill-row__label">DevOps</span>
+          <span class="skill-row__values">Docker, Git, GitHub Actions</span>
         </div>
-
-        <div class="skill-group">
-          <div class="skill-group__label">DevOps &amp; Tooling</div>
-          <div class="tags">
-            <span class="tag tag--skill">Docker</span>
-            <span class="tag tag--skill">Git</span>
-            <span class="tag tag--skill">GitHub Actions</span>
-          </div>
+        <div class="skill-row">
+          <span class="skill-row__label">Frontend</span>
+          <span class="skill-row__values">Angular 16, React 18/19, HTML / CSS / SCSS, PWA, Leaflet</span>
         </div>
-
-        <div class="skill-group">
-          <div class="skill-group__label">AI &amp; APIs</div>
-          <div class="tags">
-            <span class="tag tag--skill">Claude API</span>
-            <span class="tag tag--skill">OpenAI API</span>
-          </div>
+        <div class="skill-row">
+          <span class="skill-row__label">AI &amp; APIs</span>
+          <span class="skill-row__values">Claude API, OpenAI API</span>
         </div>
-
-        <div class="skill-group">
-          <div class="skill-group__label">Computer Graphics</div>
-          <div class="tags">
-            <span class="tag tag--skill">OpenGL 3.3</span>
-            <span class="tag tag--skill">GLFW / GLEW</span>
-            <span class="tag tag--skill">GLM</span>
-            <span class="tag tag--skill">Assimp</span>
-          </div>
+        <div class="skill-row">
+          <span class="skill-row__label">Architecture</span>
+          <span class="skill-row__values">Clean Architecture, MVVM, MVC</span>
         </div>
-
-        <div class="skill-group">
-          <div class="skill-group__label">Architecture</div>
-          <div class="tags">
-            <span class="tag tag--skill">Clean Architecture</span>
-            <span class="tag tag--skill">MVVM</span>
-            <span class="tag tag--skill">MVC</span>
-          </div>
+        <div class="skill-row">
+          <span class="skill-row__label">Graphics</span>
+          <span class="skill-row__values">OpenGL 3.3, GLFW / GLEW, GLM, Assimp</span>
         </div>
       </div>
+    </div>
 
-      <div class="section">
-        <div class="section-title">Education</div>
-        <div class="edu-item">
-          <div class="edu-item__school">Faculty of Technical Sciences</div>
-          <div class="edu-item__degree">University of Novi Sad<br>B.Sc. Computer Science &amp; Automation (E2)</div>
-          <div class="edu-item__year">2022 – Present · 4th year</div>
+    <!-- PROJECTS -->
+    <div class="section">
+      <div class="section-title">Projects</div>
+
+      <div class="project">
+        <div class="project__header">
+          <span class="project__name">Event Day</span>
+          <div class="project__meta">
+            <a class="project__link" href="https://github.com/velimirovic/event-day-app" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+              GitHub
+            </a>
+            <span class="project__badge">Web · PWA</span>
+          </div>
         </div>
-        <div class="edu-item">
-          <div class="edu-item__school">El. Engineering School "Mihajlo Pupin"</div>
-          <div class="edu-item__degree">IT Technician · Novi Sad</div>
-          <div class="edu-item__year">2018 – 2022</div>
+        <div class="project__subtitle">Conference Progressive Web App with AI Assistant &amp; Real-time Moderation</div>
+        <div class="tags">
+          <span class="tag">React 18</span><span class="tag">Express.js</span>
+          <span class="tag">Claude API</span><span class="tag">PWA</span>
         </div>
+        <div class="project__desc">Full-featured conference app with an AI chatbot (Claude API) for schedule/speaker Q&amp;A, personalized session bookmarking with conflict detection, live Q&amp;A with priority voting, digital business card networking (vCard export), and a full admin panel. Offline-capable PWA with mobile-first design.</div>
       </div>
 
-      <div class="section">
+      <div class="project">
+        <div class="project__header">
+          <span class="project__name">Travel Vista</span>
+          <div class="project__meta">
+            <a class="project__link" href="https://github.com/kzi-nastava/psw-fe-ra-2025-group-3" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+              Frontend
+            </a>
+            <a class="project__link" href="https://github.com/kzi-nastava/psw-be-ra-2025-group-3" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+              Backend
+            </a>
+            <span class="project__badge">Web · Full-stack</span>
+          </div>
+        </div>
+        <div class="project__subtitle">Tourist Tour Platform with Real-time GPS Tracking, AI &amp; Gamification</div>
+        <div class="tags">
+          <span class="tag">ASP.NET Core 8</span><span class="tag">Angular 16</span>
+          <span class="tag">PostgreSQL</span><span class="tag">SignalR</span><span class="tag">OpenAI</span>
+        </div>
+        <div class="project__desc">Modular monolith (Clean Architecture) for planning and executing tourist tours. Real-time GPS tracking via SignalR + Leaflet, AI assistant (OpenAI), gamification (ranks, achievements, XP rewards), and multi-role access for authors, tourists, and admins.</div>
+      </div>
+
+      <div class="project">
+        <div class="project__header">
+          <span class="project__name">Jutjubic</span>
+          <div class="project__meta">
+            <a class="project__link" href="https://github.com/velimirovic/isa-frontend" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+              Frontend
+            </a>
+            <a class="project__link" href="https://github.com/velimirovic/isa-backend" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+              Backend
+            </a>
+            <span class="project__badge">Web · Full-stack</span>
+          </div>
+        </div>
+        <div class="project__subtitle">Geo-tagged Video Sharing Platform with Analytics ETL Pipeline</div>
+        <div class="tags">
+          <span class="tag">Java Spring Boot</span><span class="tag">Angular 16</span><span class="tag">PostgreSQL</span>
+        </div>
+        <div class="project__desc">Location-based video platform with interactive Leaflet map, JWT authentication + email activation, and scheduled ETL jobs for popularity scoring.</div>
+      </div>
+
+      <div class="project">
+        <div class="project__header">
+          <span class="project__name">Teodity Market</span>
+          <div class="project__meta">
+            <a class="project__link" href="https://github.com/velimirovic/teodity-market" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+              GitHub
+            </a>
+            <span class="project__badge">Web · E-Commerce</span>
+          </div>
+        </div>
+        <div class="project__subtitle">Full-stack Marketplace with Fixed Prices &amp; Live Auctions</div>
+        <div class="tags">
+          <span class="tag">React 19</span><span class="tag">Node.js</span><span class="tag">Express</span>
+          <span class="tag">Leaflet</span><span class="tag">Nodemailer</span>
+        </div>
+        <div class="project__desc">E-commerce marketplace with dual-mode sales (fixed price + live auctions), location-based listing discovery, email notifications, and role-based access control (buyer, seller, admin).</div>
+      </div>
+
+      <div class="project">
+        <div class="project__header">
+          <span class="project__name">Booking App</span>
+          <div class="project__meta">
+            <a class="project__link" href="https://github.com/velimirovic/booking-app" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+              GitHub
+            </a>
+            <span class="project__badge">Desktop · WPF</span>
+          </div>
+        </div>
+        <div class="project__subtitle">Accommodation &amp; Tour Reservation System with Custom DI Container</div>
+        <div class="tags">
+          <span class="tag">C# .NET 8</span><span class="tag">WPF</span>
+          <span class="tag">MVVM</span><span class="tag">PDF Generation</span>
+        </div>
+        <div class="project__desc">Desktop app with a custom-built DI container, live tour progress tracking, multi-role architecture (guests, owners, guides, tourists), PDF report generation, and monthly/yearly statistics dashboards.</div>
+      </div>
+
+      <div class="project">
+        <div class="project__header">
+          <span class="project__name">OpenGL Elevator Simulators (2D &amp; 3D)</span>
+          <div class="project__meta">
+            <a class="project__link" href="https://github.com/velimirovic/elevator-simulator-2d" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+              2D
+            </a>
+            <a class="project__link" href="https://github.com/velimirovic/elevator-simulator-3d" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+              3D
+            </a>
+            <span class="project__badge">Graphics · C++</span>
+          </div>
+        </div>
+        <div class="project__subtitle">Interactive Elevator Simulations with Custom Rendering &amp; Physics</div>
+        <div class="tags">
+          <span class="tag">C++</span><span class="tag">OpenGL 3.3</span>
+          <span class="tag">GLFW / GLEW</span><span class="tag">GLM</span><span class="tag">Assimp</span>
+        </div>
+        <div class="project__desc">3D first-person sim with Phong shading, 9+ point lights, raycasting button interaction, and 3D model loading via Assimp. 2D sim with request queue, door animations, sprite-based walking (6 frames), and a custom font renderer.</div>
+      </div>
+
+    </div>
+
+    <!-- EDUCATION -->
+    <div class="section">
+      <div class="section-title">Education</div>
+
+      <div class="edu-item">
+        <div class="edu-item__left">
+          <div class="edu-item__school">Faculty of Technical Sciences, University of Novi Sad</div>
+          <div class="edu-item__degree">B.Sc. Computer Science &amp; Automation (E2) · 4th year</div>
+        </div>
+        <div class="edu-item__year">2022 – Present</div>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-item__left">
+          <div class="edu-item__school">Electrical Engineering School "Mihajlo Pupin", Novi Sad</div>
+          <div class="edu-item__degree">Information Technology Technician</div>
+        </div>
+        <div class="edu-item__year">2018 – 2022</div>
+      </div>
+    </div>
+
+    <div class="bottom-row">
+      <div>
         <div class="section-title">Languages</div>
         <div class="lang-item">Serbian <span>Native</span></div>
         <div class="lang-item">English <span>Professional</span></div>
       </div>
-
-      <div class="section">
+      <div>
         <div class="section-title">Notable</div>
         <div class="highlight-box">
-          <strong>Mensa member</strong> since age 17<br>
-          IQ 156+ · Cattell scale
+          <strong>Mensa member</strong> since age 17 &nbsp;·&nbsp; IQ 156+ (Cattell scale)
         </div>
       </div>
-
-    </aside>
-
-    <!-- MAIN -->
-    <main class="main">
-
-      <div class="section">
-        <div class="section-title">Professional Summary</div>
-        <p class="summary-text">
-          4th-year Computer Science student at the University of Novi Sad with <strong>hands-on experience shipping full-stack web applications, desktop software, and computer graphics projects</strong>. Comfortable across the entire stack — from Java Spring Boot and ASP.NET Core backends to Angular frontends, with real-world use of Docker, PostgreSQL, WebSockets, and AI APIs. Strong algorithmic foundation from both coursework and self-directed learning. <strong>Open to junior developer and internship roles</strong> in web development or backend systems engineering.
-        </p>
-      </div>
-
-      <div class="section">
-        <div class="section-title">Projects</div>
-
-        <div class="project">
-          <div class="project__header">
-            <span class="project__name">Event Day</span>
-            <span class="project__badge">Web · PWA</span>
-          </div>
-          <div class="project__subtitle">Conference Progressive Web App with AI Assistant &amp; Real-time Moderation</div>
-          <div class="tags">
-            <span class="tag tag--tech">React 18</span>
-            <span class="tag tag--tech">Express.js</span>
-            <span class="tag tag--tech">Claude API</span>
-            <span class="tag tag--tech">PWA</span>
-          </div>
-          <div class="project__desc">
-            Full-featured conference app with an AI chatbot (Claude API) for schedule/speaker Q&amp;A, personalized session bookmarking with conflict detection, live Q&amp;A with priority voting, digital business card networking (vCard export), and a full admin panel. Offline-capable PWA with mobile-first design.
-          </div>
-        </div>
-
-        <div class="project">
-          <div class="project__header">
-            <span class="project__name">Travel Vista</span>
-            <span class="project__badge">Web · Full-stack</span>
-          </div>
-          <div class="project__subtitle">Tourist Tour Platform with Real-time GPS Tracking, AI &amp; Gamification</div>
-          <div class="tags">
-            <span class="tag tag--tech">ASP.NET Core 8</span>
-            <span class="tag tag--tech">Angular 16</span>
-            <span class="tag tag--tech">PostgreSQL</span>
-            <span class="tag tag--tech">SignalR</span>
-            <span class="tag tag--tech">OpenAI</span>
-          </div>
-          <div class="project__desc">
-            Modular monolith (Clean Architecture) for planning tourist tours. Real-time GPS tracking via SignalR + Leaflet, AI assistant (OpenAI), gamification (ranks, achievements, XP rewards), and multi-role access for authors, tourists, and admins.
-          </div>
-        </div>
-
-        <div class="project">
-          <div class="project__header">
-            <span class="project__name">Jutjubic</span>
-            <span class="project__badge">Web · Full-stack</span>
-          </div>
-          <div class="project__subtitle">Geo-tagged Video Sharing Platform with Analytics ETL Pipeline</div>
-          <div class="tags">
-            <span class="tag tag--tech">Java Spring Boot</span>
-            <span class="tag tag--tech">Angular 16</span>
-            <span class="tag tag--tech">PostgreSQL</span>
-          </div>
-          <div class="project__desc">
-            Location-based video platform with interactive Leaflet map, JWT authentication + email activation, and scheduled ETL jobs for popularity scoring.
-          </div>
-        </div>
-
-        <div class="project">
-          <div class="project__header">
-            <span class="project__name">Teodity Market</span>
-            <span class="project__badge">Web · E-Commerce</span>
-          </div>
-          <div class="project__subtitle">Full-stack Marketplace with Fixed Prices &amp; Live Auctions</div>
-          <div class="tags">
-            <span class="tag tag--tech">React 19</span>
-            <span class="tag tag--tech">Node.js</span>
-            <span class="tag tag--tech">Express</span>
-            <span class="tag tag--tech">Leaflet</span>
-            <span class="tag tag--tech">Nodemailer</span>
-          </div>
-          <div class="project__desc">
-            E-commerce marketplace with dual-mode sales (fixed price + live auctions), location-based listing discovery, email notifications, and role-based access control (buyer, seller, admin).
-          </div>
-        </div>
-
-        <div class="project">
-          <div class="project__header">
-            <span class="project__name">Booking App</span>
-            <span class="project__badge">Desktop · WPF</span>
-          </div>
-          <div class="project__subtitle">Accommodation &amp; Tour Reservation System with Custom DI Container</div>
-          <div class="tags">
-            <span class="tag tag--tech">C# .NET 8</span>
-            <span class="tag tag--tech">WPF</span>
-            <span class="tag tag--tech">MVVM</span>
-            <span class="tag tag--tech">PDF Generation</span>
-          </div>
-          <div class="project__desc">
-            Desktop app with a custom-built DI container, live tour progress tracking, multi-role architecture (guests, owners, guides, tourists), PDF report generation, and statistics dashboards.
-          </div>
-        </div>
-
-        <div class="project">
-          <div class="project__header">
-            <span class="project__name">OpenGL Elevator Simulators (2D &amp; 3D)</span>
-            <span class="project__badge">Graphics · C++</span>
-          </div>
-          <div class="project__subtitle">Interactive Elevator Simulations with Custom Rendering &amp; Physics</div>
-          <div class="tags">
-            <span class="tag tag--tech">C++</span>
-            <span class="tag tag--tech">OpenGL 3.3</span>
-            <span class="tag tag--tech">GLFW / GLEW</span>
-            <span class="tag tag--tech">GLM</span>
-            <span class="tag tag--tech">Assimp</span>
-          </div>
-          <div class="project__desc">
-            3D first-person sim with Phong shading, 9+ point lights, raycasting interaction, and 3D model loading via Assimp. 2D sim with request queue, door animations, sprite-based walking (6 frames), and a custom font renderer.
-          </div>
-        </div>
-
-      </div>
-    </main>
+    </div>
 
   </div>
 </body>
