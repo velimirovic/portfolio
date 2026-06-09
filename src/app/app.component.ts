@@ -9,7 +9,7 @@ interface Project {
   description: string;
   features: string[];
   images: string[];
-  category: 'web' | 'desktop' | 'graphics';
+  category: 'web' | 'desktop' | 'graphics' | 'game';
 }
 
 @Component({
@@ -60,6 +60,23 @@ export class AppComponent implements OnInit, OnDestroy {
       category: 'web',
     },
     {
+      id: 'tourflo',
+      title: 'TourFlo',
+      subtitle: 'Tourism Platform — 7-Service Microservices Architecture',
+      tech: ['Angular 18', 'ASP.NET Core', 'Spring Boot', 'Go', 'Node.js', 'Docker', 'gRPC'],
+      description: 'Tourism platform built with a full microservices architecture for the Service-Oriented Architecture course. Seven independently deployable services communicate via REST and gRPC, all orchestrated with Docker Compose.',
+      features: [
+        'API Gateway (Golang + gRPC) — unified entry point with JWT validation and service routing',
+        'Auth & Stakeholders (ASP.NET Core + PostgreSQL) — registration, JWT issuance, user profiles',
+        'Tour & Purchase (Spring Boot + PostgreSQL) — tour management, position simulator, cart & checkout',
+        'Blog (Node.js + MongoDB) — travel blog with full CRUD',
+        'Followers (Golang + Neo4j) — social graph for tourist connections',
+        'Full Docker Compose deployment — all 7 services containerized and networked',
+      ],
+      images: ['assets/projects/tourflo/1.png', 'assets/projects/tourflo/2.png', 'assets/projects/tourflo/3.png', 'assets/projects/tourflo/4.png', 'assets/projects/tourflo/5.png'],
+      category: 'web',
+    },
+    {
       id: 'jutjubic',
       title: 'Jutjubic',
       subtitle: 'Video Sharing Platform with Geo-Mapping',
@@ -80,6 +97,23 @@ export class AppComponent implements OnInit, OnDestroy {
       category: 'web',
     },
     {
+      id: 'brb',
+      title: 'Be Real Bro',
+      subtitle: 'Social Party Card Game Web App',
+      tech: ['Angular 18', 'TypeScript', 'RxJS', 'SCSS'],
+      description: 'Social party card game web application for friends, combining honest questions and fun challenges. Built as a single-page Angular app with reactive card-deck management and category-based card pools.',
+      features: [
+        'Shuffled question deck with multiple themed categories loaded from JSON',
+        'Separate challenge card pool drawn on "Punishment" button',
+        'Skip once-per-game mechanic',
+        'Special one-time-use cards per turn',
+        'Reactive state management via RxJS BehaviorSubjects',
+        'Mobile-first responsive design — ideal for phones at parties',
+      ],
+      images: ['assets/projects/brb/1.png', 'assets/projects/brb/2.png', 'assets/projects/brb/3.png'],
+      category: 'web',
+    },
+    {
       id: 'booking-app',
       title: 'Booking App',
       subtitle: 'Accommodation & Tour Reservation System',
@@ -88,6 +122,40 @@ export class AppComponent implements OnInit, OnDestroy {
       features: ['Live tour tracking + progress monitoring', 'Multi-role system (Guests, Owners, Guides, Tourists)', 'Custom DI container + MVVM architecture', 'PDF report generation + monthly/yearly statistics'],
       images: ['assets/projects/booking-app/1.png','assets/projects/booking-app/2.png','assets/projects/booking-app/3.png','assets/projects/booking-app/4.png'],
       category: 'desktop',
+    },
+    {
+      id: 'unity-3d',
+      title: 'Unity 3D Runner',
+      subtitle: '3D Third-Person Game in Unity 6',
+      tech: ['Unity 6', 'C#', 'Unity Physics', 'Rigidbody'],
+      description: '3D third-person game set in an Old Sea Port environment, developed in Unity 6 for the Visual Programming and Animation (VPA) course. Features a full physics-based character controller with speed power-ups and collision reactions.',
+      features: [
+        'Character controller — walk, run (Shift), jump (Space), crouch (Ctrl)',
+        'Speed pickups — boost and slow-debuff collectibles with active-timer HUD',
+        'Physics collision — character stumbles and auto-recovers on high-force impact',
+        'Push physics — rigidbody objects respond to character momentum with impulse force',
+        'Animator-driven blended movement states (idle/walk/run/crouch/jump/fall)',
+        'Pause system, camera controller, and UI manager',
+      ],
+      images: ['assets/projects/unity-3d/1.png', 'assets/projects/unity-3d/2.png', 'assets/projects/unity-3d/3.png'],
+      category: 'game',
+    },
+    {
+      id: 'unity-2d',
+      title: 'Unity 2D Platformer',
+      subtitle: '2D Action Platformer Game in Unity 6',
+      tech: ['Unity 6', 'C#', 'Unity Input System', 'Pixel Art'],
+      description: '2D action platformer game developed in Unity 6 for the Visual Programming and Animation (VPA) course. A knight battles through pixel art levels filled with patrolling enemies, traps, and collectible power-ups.',
+      features: [
+        'Knight character — WASD movement, jump, and sprint with cooldown indicator',
+        'Flying potion power-up — temporary flight mode with timer bar',
+        'Enemy AI — ground patrol enemies and flying enemies',
+        'Trap systems — moving platform traps and projectile-shooting trap towers',
+        'Health bar, damage feedback animations, and game over screen',
+        'SoundManager with background music and SFX audio mixer channels',
+      ],
+      images: ['assets/projects/unity-2d/1.png', 'assets/projects/unity-2d/2.png', 'assets/projects/unity-2d/3.png'],
+      category: 'game',
     },
     {
       id: 'elevator-3d',
@@ -112,11 +180,11 @@ export class AppComponent implements OnInit, OnDestroy {
   ];
 
   skillCategories = [
-    { title: 'Languages', icon: '{ }', items: ['Java', 'C#', 'C++', 'TypeScript', 'Python', 'SQL', 'C'] },
-    { title: 'Backend', icon: '⚙', items: ['Spring Boot', 'ASP.NET Core', 'Node.js / Express', '.NET / WPF'] },
+    { title: 'Languages', icon: '{ }', items: ['Java', 'C#', 'C++', 'TypeScript', 'Go', 'Python', 'SQL', 'C'] },
+    { title: 'Backend', icon: '⚙', items: ['Spring Boot', 'ASP.NET Core', 'Node.js / Express', 'gRPC', '.NET / WPF'] },
     { title: 'Frontend', icon: '◧', items: ['Angular', 'React', 'HTML / CSS / SCSS', 'Leaflet Maps'] },
-    { title: 'Databases & DevOps', icon: '◉', items: ['PostgreSQL', 'Docker', 'Prometheus', 'Grafana', 'Git'] },
-    { title: 'Graphics & Other', icon: '△', items: ['OpenGL 3.3', 'GLFW / GLEW', 'Assimp', 'OpenCV', 'MATLAB'] },
+    { title: 'Databases & DevOps', icon: '◉', items: ['PostgreSQL', 'MongoDB', 'Neo4j', 'Docker', 'Prometheus', 'Grafana', 'Git'] },
+    { title: 'Graphics & Game Dev', icon: '△', items: ['Unity 6', 'OpenGL 3.3', 'GLFW / GLEW', 'Assimp', 'OpenCV', 'MATLAB'] },
   ];
 
   activeFilter = 'all';
@@ -124,6 +192,7 @@ export class AppComponent implements OnInit, OnDestroy {
     { id: 'all', label: 'All Projects' },
     { id: 'web', label: 'Web Apps' },
     { id: 'desktop', label: 'Desktop' },
+    { id: 'game', label: 'Games' },
     { id: 'graphics', label: 'Graphics' },
   ];
 
@@ -258,7 +327,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   getCategoryLabel(cat: string): string {
-    return ({ web: 'Web App', desktop: 'Desktop', graphics: 'Computer Graphics' } as any)[cat] || cat;
+    return ({ web: 'Web App', desktop: 'Desktop', graphics: 'Computer Graphics', game: 'Game Dev' } as any)[cat] || cat;
   }
 
   getProjectIndex(project: Project): string {
